@@ -1,0 +1,23 @@
+<Context>
+    <!-- Database connection -->
+    <Resource driverClassName="oracle.jdbc.OracleDriver"
+              maxIdle="2"
+              maxTotal="20"
+              maxWaitMillis="5000"
+              name="jdbc/CubaDS"
+              password="oracle"
+              type="javax.sql.DataSource"
+              url="jdbc:oracle:thin:@//localhost/XE"
+              username="system"/>
+    <!-- Switch off session serialization -->
+    <Manager pathname=""/>
+    <!--<Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
+          maxIdle="2"
+          maxTotal="20"
+          maxWaitMillis="5000"
+          name="jdbc/CubaDS"
+          password=""
+          type="javax.sql.DataSource"
+          url="jdbc:hsqldb:hsql://localhost/cejt"
+          username="sa"/>-->
+</Context>
