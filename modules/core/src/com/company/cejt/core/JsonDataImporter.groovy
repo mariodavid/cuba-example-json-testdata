@@ -4,7 +4,8 @@ import com.haulmont.chile.core.model.MetaClass;
 import com.haulmont.chile.core.model.MetaProperty;
 import com.haulmont.cuba.core.app.importexport.EntityImportExportService;
 import com.haulmont.cuba.core.app.importexport.EntityImportView;
-import com.haulmont.cuba.core.app.importexport.ReferenceImportBehaviour;
+import com.haulmont.cuba.core.app.importexport.ReferenceImportBehaviour
+import com.haulmont.cuba.core.global.GlobalConfig;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.Resources;
 import com.haulmont.cuba.core.sys.AppContext
@@ -43,6 +44,10 @@ public class JsonDataImporter implements AppContext.Listener {
     public static String TESTDATA_FILE_PATTERN = "data/test/*.zip";
     public static String SEEDDATA_FILE_PATTERN = "data/seed/*.zip";
 
+
+    @Inject
+    GlobalConfig globalConfig
+
     @Inject
     Resources resources;
 
@@ -64,7 +69,10 @@ public class JsonDataImporter implements AppContext.Listener {
     @Override
     public void applicationStarted() {
         importSeedData();
-        importTestdata();
+
+        if (globalConfig.testMode) {
+            importTestdata();
+        }
     }
 
     public void importTestdata() {
