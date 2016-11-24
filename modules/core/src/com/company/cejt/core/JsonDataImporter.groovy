@@ -65,6 +65,8 @@ public class JsonDataImporter implements AppContext.Listener {
     public void applicationStarted() {
         importSeedData();
         importTestdata();
+
+        clearConfigurationCache();
     }
 
     public void importTestdata() {
@@ -96,6 +98,10 @@ public class JsonDataImporter implements AppContext.Listener {
         }
     }
 
+
+    protected void clearConfigurationCache() {
+        configStorageAPI.clearCache()
+    }
 
     Resource[] loadResources(String pattern) throws IOException {
         return ResourcePatternUtils.getResourcePatternResolver(resources).getResources(pattern);
